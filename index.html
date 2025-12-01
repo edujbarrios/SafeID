@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SafeID - Protect your identity documents online with secure watermarks. Client-side processing ensures complete privacy.">
+    <title>SafeID - Secure Document Protection Tool</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect x="4" y="4" width="24" height="24" rx="4" stroke="currentColor" stroke-width="2"/>
+                    <path d="M12 16L15 19L20 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="logo-text">SafeID</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="https://github.com/edujbarrios" target="_blank" class="nav-link">GitHub</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Secure Your Personal Documents Before Sharing</h1>
+                <p class="hero-subtitle">A browser-based tool to add custom watermarks to your identity documents. No uploads, no tracking, complete client-side processing.</p>
+                
+                <!-- Upload Area -->
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="fileInput" accept="image/png,image/jpeg,image/jpg,image/webp" hidden>
+                    <div class="upload-content">
+                        <svg class="upload-icon" width="64" height="64" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <p class="upload-text">Drop your image here or click to browse</p>
+                        <p class="upload-hint">Accepts JPG, PNG, and WEBP formats</p>
+                        <button class="btn btn-primary" id="selectFileBtn">Select File</button>
+                    </div>
+                </div>
+
+                <!-- Processing Area (hidden by default) -->
+                <div class="processing-area hidden" id="processingArea">
+                    <div class="image-preview">
+                        <canvas id="previewCanvas"></canvas>
+                    </div>
+                    
+                    <div class="watermark-controls">
+                        <h3>Watermark Settings</h3>
+                        
+                        <div class="form-group">
+                            <label for="watermarkText">Watermark Text</label>
+                            <input type="text" id="watermarkText" placeholder="e.g., CONFIDENTIAL - Not for redistribution" class="input">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="opacity">Opacity</label>
+                            <input type="range" id="opacity" min="10" max="100" value="30" class="slider">
+                            <span id="opacityValue">30%</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fontSize">Font Size</label>
+                            <input type="range" id="fontSize" min="12" max="72" value="24" class="slider">
+                            <span id="fontSizeValue">24px</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rotation">Rotation</label>
+                            <input type="range" id="rotation" min="-45" max="45" value="-30" class="slider">
+                            <span id="rotationValue">-30°</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="color">Color</label>
+                            <input type="color" id="color" value="#ff0000" class="color-input">
+                        </div>
+
+                        <div class="button-group">
+                            <button class="btn btn-success" id="downloadBtn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Download Protected Image
+                            </button>
+                            <button class="btn btn-secondary" id="resetBtn">Start Over</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why SafeID?</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Browser-Based Security</h3>
+                    <p>Everything runs locally in your browser. Your documents never leave your device, ensuring complete privacy.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Protection</h3>
+                    <p>Add watermarks in seconds without any server communication. No waiting, no uploads, no downloads.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Identity Protection</h3>
+                    <p>Safeguard your personal documents when sharing online. Prevent unauthorized use of your identity files.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🆓</div>
+                    <h3>Free and Open</h3>
+                    <p>Completely free to use with full source code available. No hidden costs or limitations.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📄</div>
+                    <h3>Multiple Formats</h3>
+                    <p>Support for identity cards, passports, licenses, certificates, contracts, and other documents.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Customizable Watermarks</h3>
+                    <p>Full control over watermark appearance: custom text, opacity, size, rotation, and color.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2 class="section-title">Common Questions</h2>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Why should I watermark my identity documents?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>When sharing personal documents online for verification purposes, watermarks protect against identity theft and document misuse. They ensure your documents can only be used for their intended purpose while remaining readable for legitimate verification.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Is my data completely private?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes. SafeID runs entirely in your web browser. Your documents are processed locally on your device using JavaScript and HTML5 Canvas. No files are uploaded to any server, and no data leaves your computer.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What documents can I protect with SafeID?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>SafeID works with any image-based document: government-issued IDs, passports, driver's licenses, academic diplomas, professional certificates, legal contracts, medical records, and financial documents. Supports JPG, PNG, and WEBP formats.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What watermark text should I use?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Use specific text that identifies the intended recipient and purpose. Examples: "FOR VERIFICATION - [Company Name]", "VERIFICATION COPY - [Date]", or "AUTHORIZED USE ONLY - [Recipient]". This clearly marks documents for their specific use case.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Is SafeID really free?
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, SafeID is completely free and open-source under the MIT license. There are no premium features, subscriptions, or hidden costs. You can use, modify, and distribute it freely. The source code is available on GitHub.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logo">
+                        <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <rect x="4" y="4" width="24" height="24" rx="4" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 16L15 19L20 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="logo-text">SafeID</span>
+                    </div>
+                    <p>Protecting your identity documents online, one watermark at a time.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <a href="https://github.com/edujbarrios/SafeID" target="_blank">GitHub</a>
+                        <a href="#faq">FAQ</a>
+                        <a href="#features">Features</a>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h4>Legal</h4>
+                        <a href="#license">MIT License</a>
+                        <a href="#privacy">Privacy</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 SafeID by Eduardo J. Barrios. Open-source under MIT License.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

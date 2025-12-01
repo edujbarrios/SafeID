@@ -12,7 +12,8 @@ Client-side document watermarking application with advanced protection capabilit
 
 SafeID is an open-source web application designed to add robust watermarks to documents directly in the browser. All processing occurs client-side, ensuring complete privacy and data security.
 
-This Open Soucr project is inspired by [Safelayer](https://saferlayer.com/)
+> [!CAUTION]
+> This Open Source project is inspired by [Safelayer](https://saferlayer.com/)
 
 ## Features
 
@@ -95,4 +96,5 @@ python -m http.server 8000
 
 **Eduardo J. Barrios**
 - GitHub: [@edujbarrios](https://github.com/edujbarrios)
+
 
